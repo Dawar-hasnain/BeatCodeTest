@@ -5,14 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import it.beatcode.academytest.ui.screens.ItemsListScreen
 import it.beatcode.academytest.ui.theme.AcademyTestTheme
+import it.beatcode.academytest.viewmodel.ItemsListViewModel
 
 /**
  * The single Activity that hosts all Compose UI.
@@ -24,29 +24,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge() // draw behind the system bars for a modern edge-to-edge look
         setContent {
             AcademyTestTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Placeholder(modifier = Modifier.padding(innerPadding))
-                }
+                AcademyApp()
             }
         }
     }
 }
 
-/** Temporary scaffold placeholder — replaced by the real screens in later feature branches. */
 @Composable
-fun Placeholder(modifier: Modifier = Modifier) {
-    Text(
-        text = "AcademyTest — scaffold ready",
-        style = MaterialTheme.typography.titleMedium,
-        modifier = modifier
-    )
-}
+private fun AcademyApp(
+    viewModel: ItemsListViewModel = viewModel(),
+) {
+    // Observe the ViewModel's single source of truth, lifecycle-aware.
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-// @Preview renders this composable in the IDE without running the app on a device.
-@Preview(showBackground = true)
-@Composable
-fun PlaceholderPreview() {
-    AcademyTestTheme {
-        Placeholder()
-    }
+    ItemsListScreen(
+        uiState = uiState,
+        onItemClick = viewModel::select, // selection only for now; detail pane arrives next branch
+        onToggleFavorite = viewModel::toggleFavorite,
+        onAddItem = { /* TODO(feat/add-item-sheet): present the add-item sheet */ },
+        modifier = Modifier.fillMaxSize(),
+    )
 }

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">AcademyTest</string>
+
+    <!-- Items list screen -->
+    <string name="items_title">Oggetti</string>
+    <string name="add_item">Aggiungi oggetto</string>
+
+    <!-- Favorite state -->
+    <string name="favorite">Preferito</string>
+    <string name="not_favorite">Non preferito</string>
+    <string name="add_to_favorites">Aggiungi ai preferiti</string>
+    <string name="remove_from_favorites">Rimuovi dai preferiti</string>
+
+    <!-- Empty state -->
+    <string name="empty_title">Nessun oggetto</string>
+    <string name="empty_list_description">Aggiungi un oggetto dalla barra in alto.</string>
 </resources>

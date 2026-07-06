@@ -1,0 +1,12 @@
+# Normalize line endings to LF in the repository for all text files,
+# so the project is consistent regardless of the contributor's OS.
+* text=auto eol=lf
+
+# Windows batch scripts must keep CRLF to run correctly.
+*.bat text eol=crlf
+
+# Treat these as binary (never modify line endings / never diff as text).
+*.jar binary
+*.png binary
+*.webp binary
+*.apk binary

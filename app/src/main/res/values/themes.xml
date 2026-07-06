@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Base XML theme used before Compose draws (splash/window background, no
+      native ActionBar since Compose provides its own top bars). The actual UI
+      colors come from AcademyTestTheme (Material 3) in Compose.
+    -->
+    <style name="Theme.AcademyTest" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

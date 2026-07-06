@@ -14,4 +14,10 @@
     <!-- Empty state -->
     <string name="empty_title">Nessun oggetto</string>
     <string name="empty_list_description">Aggiungi un oggetto dalla barra in alto.</string>
+    <string name="empty_detail_description">Aggiungi un oggetto dalla lista.</string>
+
+    <!-- Detail screen -->
+    <string name="detail_section">Oggetto</string>
+    <string name="name_label">Nome</string>
+    <string name="back">Indietro</string>
 </resources>

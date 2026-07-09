@@ -19,6 +19,20 @@ using idiomatic Android patterns rather than a mechanical line-by-line port.
 - Italian UI strings (matching the original) and accessibility labels throughout
 - `@Preview`s for every composable
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/list.png" width="220"><br>List</td>
+    <td align="center"><img src="docs/screenshots/detail.png" width="220"><br>Detail</td>
+    <td align="center"><img src="docs/screenshots/add.png" width="220"><br>Add item</td>
+  </tr>
+</table>
+
+Adaptive two-pane layout on a wide screen (landscape):
+
+<img src="docs/screenshots/landscape.png" width="640">
+
 ## Build & run
 
 Requirements: **JDK 17**, Android SDK with **API 35**, and either Android Studio (Ladybug or

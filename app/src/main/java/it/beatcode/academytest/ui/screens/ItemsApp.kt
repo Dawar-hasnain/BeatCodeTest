@@ -9,7 +9,10 @@ import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneSca
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -37,6 +40,7 @@ fun ItemsApp(
     // NavigableListDetailPaneScaffold expects a ThreePaneScaffoldNavigator<Any>.
     val navigator = rememberListDetailPaneScaffoldNavigator<Any>()
     val scope = rememberCoroutineScope()
+    var showAddSheet by rememberSaveable { mutableStateOf(false) }
 
     NavigableListDetailPaneScaffold(
         navigator = navigator,
@@ -52,7 +56,7 @@ fun ItemsApp(
                         }
                     },
                     onToggleFavorite = viewModel::toggleFavorite,
-                    onAddItem = { /* TODO(feat/add-item-sheet): present the add-item sheet */ },
+                    onAddItem = { showAddSheet = true },
                 )
             }
         },
@@ -77,4 +81,14 @@ fun ItemsApp(
             }
         },
     )
+
+    if (showAddSheet) {
+        AddItemSheet(
+            onDismiss = { showAddSheet = false },
+            onSave = { name ->
+                viewModel.addItem(name)
+                showAddSheet = false
+            },
+        )
+    }
 }

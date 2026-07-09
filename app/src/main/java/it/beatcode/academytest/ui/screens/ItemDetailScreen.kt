@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -41,6 +42,7 @@ import it.beatcode.academytest.ui.theme.AcademyTestTheme
 fun ItemDetailScreen(
     item: Item,
     onToggleFavorite: () -> Unit,
+    onDelete: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     showBackButton: Boolean = true,
@@ -58,6 +60,14 @@ fun ItemDetailScreen(
                                 contentDescription = stringResource(R.string.back),
                             )
                         }
+                    }
+                },
+                actions = {
+                    IconButton(onClick = onDelete) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = stringResource(R.string.delete_item),
+                        )
                     }
                 },
             )
@@ -119,6 +129,7 @@ private fun ItemDetailScreenFavoritePreview() {
         ItemDetailScreen(
             item = Item(creationIndex = 0, name = "Lupo 🐺", isFavorite = true),
             onToggleFavorite = {},
+            onDelete = {},
             onBack = {},
         )
     }
@@ -131,6 +142,7 @@ private fun ItemDetailScreenNotFavoritePreview() {
         ItemDetailScreen(
             item = Item(creationIndex = 0, name = "Álgebra", isFavorite = false),
             onToggleFavorite = {},
+            onDelete = {},
             onBack = {},
         )
     }

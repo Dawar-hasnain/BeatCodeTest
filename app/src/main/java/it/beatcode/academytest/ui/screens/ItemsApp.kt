@@ -56,6 +56,7 @@ fun ItemsApp(
                         }
                     },
                     onToggleFavorite = viewModel::toggleFavorite,
+                    onDeleteItem = viewModel::delete,
                     onAddItem = { showAddSheet = true },
                 )
             }
@@ -69,6 +70,13 @@ fun ItemsApp(
                         showBackButton = navigator.canNavigateBack(),
                         onBack = { scope.launch { navigator.navigateBack() } },
                         onToggleFavorite = { viewModel.toggleFavorite(selected.id) },
+                        onDelete = {
+                            viewModel.deleteFromDetail(selected.id)
+                            // On a phone the detail covers the list; return to it.
+                            scope.launch {
+                                if (navigator.canNavigateBack()) navigator.navigateBack()
+                            }
+                        },
                     )
                 } else {
                     // No selection: mirrors SwiftUI's "Nessun oggetto" detail placeholder.

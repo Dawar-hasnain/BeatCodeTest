@@ -20,6 +20,7 @@
     <string name="detail_section">Oggetto</string>
     <string name="name_label">Nome</string>
     <string name="back">Indietro</string>
+    <string name="delete_item">Elimina oggetto</string>
 
     <!-- Add item sheet -->
     <string name="add_title">Nuovo oggetto</string>
